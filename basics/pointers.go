@@ -11,6 +11,10 @@ type Vertex struct {
 	Y int
 }
 
+func printSlice(s []int) {
+	fmt.Printf("len=%d cap=%d %v\n", len(s), cap(s), s)
+}
+
 func main() {
 	i, j := 42, 2701
 	p := &i         // pointer to i
@@ -77,4 +81,58 @@ func main() {
 	slice2[0] = "ASDF"
 	fmt.Println(slice1, slice2)
 	fmt.Println(names)
+
+	//----slice literals
+	// similar to array literals but without the length.
+
+	//[2]bool{true,false} ---> array literal
+	//[]bool {true,true}  ----> slice literal
+
+	q := []int{2, 3, 5, 7, 11, 13}
+	fmt.Println(q)
+	r := []bool{true, false, true, true, false, true}
+	fmt.Println(r)
+	sz := []struct {
+		i int
+		b bool
+	}{
+		{1, true},
+		{2, false},
+		{3, false},
+		{4, false},
+	}
+	fmt.Println(sz)
+	// when slicing you may omit the high or low bounds to use their defaults instead.
+
+	// the default is 0 for low bound and the length of the slice for the highbound
+
+	// a slice has both length and capacity.
+	// length---> number of elements it contains use -> len(s)
+	// capacity ----> number of elements in the underlying array coundting from the first element in slice use -> cap(s).
+
+	sample := []int{2, 3, 5, 7, 11, 13}
+	sample = sample[1:4] // [3,5,7]
+	fmt.Println(sample)
+	printSlice(sample) // len 3 cap 5
+
+	sample = sample[:2] // [3,5]
+	fmt.Println(sample)
+	printSlice(sample)
+
+	sample = sample[1:] //[5]
+	fmt.Println(sample)
+	printSlice(sample)
+
+	// slices can be created using built in make function
+
+	sliceCreatedUsingMake := make([]int, 5)
+	fmt.Println(sliceCreatedUsingMake)
+
+	// range form of for loop iterates over a slice or map
+
+	pow := []int{1, 2, 4, 8, 16, 32, 64, 128}
+
+	for i, v := range pow {
+		fmt.Printf("2**%d=%d\n", i, v)
+	}
 }
