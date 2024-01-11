@@ -28,8 +28,8 @@ func compute(fn func(float64, float64) float64) float64 {
 // function values may be used as function arguments and return values.
 func main() {
 	m = make(map[string]Vertex)
-	m["Bell Labs"] = Vertex{40.68433, -74.39967}
-	fmt.Println(m["Bell Labs"])
+	m["Bell Lab"] = Vertex{40.68433, -74.39967}
+	fmt.Println(m["Bell Lab"])
 	fmt.Println(map2)
 	hypot := func(x, y float64) float64 {
 		return math.Sqrt(x*x + y*y)
